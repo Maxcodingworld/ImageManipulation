@@ -68,7 +68,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 if(bitmap!=null) {
-                    image.setImageBitmap(invertImage(bitmap));
+                    bitmap = invertImage(bitmap);
+                    image.setImageBitmap(bitmap);
                 }
                 else
                     Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
@@ -79,11 +80,125 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 if(bitmap!=null) {
-                    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "InvertImage", "Description");
+                //    MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "InvertImage", "Description");
                     Toast.makeText(context,"Image Saved",Toast.LENGTH_SHORT).show();
                 }
                 else
                     Toast.makeText(context,"Image is Empty",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Button alphamminus = (Button) findViewById(R.id.alphaminus);
+        alphamminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(changeImage(bitmap,-1,0,0,0));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button alphamplus = (Button) findViewById(R.id.alphaplus);
+        alphamplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(changeImage(bitmap,1,0,0,0));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button redminus = (Button) findViewById(R.id.redminus);
+        redminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    System.out.println("Redminus is being called");
+                    image.setImageBitmap(changeImage(bitmap,0,-100,0,0));
+                    System.out.println("Redminus finished");
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button redplus = (Button) findViewById(R.id.redplus);
+        redplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    System.out.println("Redplus is being called");
+                    image.setImageBitmap(changeImage(bitmap,0,100,0,0));
+                    System.out.println("Redplus finished");
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Button greenminus = (Button) findViewById(R.id.greenminus);
+        greenminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(changeImage(bitmap,0,0,-100,0));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button greenplus = (Button) findViewById(R.id.greenplus);
+        greenplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(changeImage(bitmap,0,0,100,0));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button blueminus = (Button) findViewById(R.id.blueminus);
+        blueminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(changeImage(bitmap,0,0,0,-100));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button blueplus = (Button) findViewById(R.id.blueplus);
+        blueplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(changeImage(bitmap,0,0,0,100));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button borderbutton = (Button) findViewById(R.id.borderbutton);
+        borderbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bitmap!=null) {
+                    image.setImageBitmap(borderimage(bitmap,5));
+                }
+                else
+                    Toast.makeText(context,"Click the Photograph first",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -106,6 +221,75 @@ public class MainActivity extends ActionBarActivity {
         }
         return newbitmap;
     }
+
+    public Bitmap changeImage(Bitmap original,int a1,int r1,int g1,int b1){
+        Bitmap newbitmap = Bitmap.createBitmap(original.getWidth(),original.getHeight(),original.getConfig());
+        int a,r,g,b;
+        int pixelcolor;
+        int height = original.getHeight();
+        int width = original.getWidth();
+        for(int i =0 ;i<height;i++){
+            for(int j =0;j<width;j++){
+                pixelcolor = original.getPixel(j,i);
+                a = Color.alpha(pixelcolor) + a1;
+                r = Color.red(pixelcolor) + r1;
+                g = Color.green(pixelcolor) + g1;
+                b = Color.blue(pixelcolor) + b1;
+                newbitmap.setPixel(j,i,Color.argb(a,r,g,b));
+            }
+        }
+        return newbitmap;
+    }
+
+    public Bitmap borderimage(Bitmap original,int border){
+        int a,r,g,b;
+        int pixelcolor;
+        int height = original.getHeight();
+        int width = original.getWidth();
+        for(int i =0 ;i<height;i++){
+            for(int j =0;j<border;j++){
+                pixelcolor = original.getPixel(j,i);
+                a = Color.alpha(pixelcolor);
+                r = 0;
+                g = 0;
+                b = 0;
+                original.setPixel(j,i,Color.argb(a,r,g,b));
+            }
+
+            for(int j =width-border-1;j<width;j++){
+                pixelcolor = original.getPixel(j,i);
+                a = Color.alpha(pixelcolor);
+                r = 0;
+                g = 0;
+                b = 0;
+                original.setPixel(j,i,Color.argb(a,r,g,b));
+            }
+
+        }
+        for(int j =0;j<width;j++){
+            for(int i = 0 ; i < border ; i++) {
+                pixelcolor = original.getPixel(j, i);
+                a = Color.alpha(pixelcolor);
+                r = 0;
+                g = 0;
+                b = 0;
+                original.setPixel(j, i, Color.argb(a, r, g, b));
+            }
+
+            for(int i = height - border -1 ; i < height ; i++) {
+                pixelcolor = original.getPixel(j, i);
+                a = Color.alpha(pixelcolor);
+                r = 0;
+                g = 0;
+                b = 0;
+                original.setPixel(j, i, Color.argb(a, r, g, b));
+            }
+        }
+
+        return original;
+    }
+
+
 
 
     public Boolean hasCamera(){

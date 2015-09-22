@@ -31,7 +31,97 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/savebutton"
+        android:layout_below="@+id/alphaminus"
+        android:layout_toLeftOf="@+id/alphaminus"
+        android:layout_toStartOf="@+id/alphaminus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A-"
+        android:id="@+id/alphaminus"
         android:layout_alignTop="@+id/invertbutton"
-        android:layout_alignRight="@+id/image"
-        android:layout_alignEnd="@+id/image" />
+        android:layout_toRightOf="@+id/invertbutton"
+        android:layout_toEndOf="@+id/invertbutton" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A+"
+        android:id="@+id/alphaplus"
+        android:layout_alignTop="@+id/alphaminus"
+        android:layout_toRightOf="@+id/alphaminus"
+        android:layout_toEndOf="@+id/alphaminus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R+"
+        android:id="@+id/redplus"
+        android:layout_alignTop="@+id/alphaplus"
+        android:layout_toRightOf="@+id/redminus"
+        android:layout_toEndOf="@+id/redminus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R-"
+        android:id="@+id/redminus"
+        android:layout_alignTop="@+id/alphaplus"
+        android:layout_toRightOf="@+id/alphaplus"
+        android:layout_toEndOf="@+id/alphaplus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G+"
+        android:id="@+id/greenplus"
+        android:layout_below="@+id/alphaminus"
+        android:layout_toRightOf="@+id/alphaminus"
+        android:layout_toEndOf="@+id/alphaminus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G-"
+        android:id="@+id/greenminus"
+        android:layout_below="@+id/alphaminus"
+        android:layout_toLeftOf="@+id/alphaplus"
+        android:layout_toStartOf="@+id/alphaplus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B-"
+        android:id="@+id/blueminus"
+        android:layout_below="@+id/redplus"
+        android:layout_toLeftOf="@+id/redplus"
+        android:layout_toStartOf="@+id/redplus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B+"
+        android:id="@+id/blueplus"
+        android:layout_alignTop="@+id/blueminus"
+        android:layout_alignLeft="@+id/redplus"
+        android:layout_alignStart="@+id/redplus" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Border"
+        android:id="@+id/borderbutton"
+        android:layout_above="@+id/invertbutton"
+        android:layout_toRightOf="@+id/invertbutton"
+        android:layout_toEndOf="@+id/invertbutton" />
 </RelativeLayout>
